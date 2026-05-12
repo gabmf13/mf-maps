@@ -112,17 +112,8 @@ export default function Home() {
   function openWaze(lat, lng) {
   if (!lat || !lng) return;
 
-  const appUrl =
+  window.location.href =
     `waze://?ll=${lat},${lng}&navigate=yes`;
-
-  const webUrl =
-    `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
-
-  window.location.href = appUrl;
-
-  setTimeout(() => {
-    window.location.href = webUrl;
-  }, 1500);
 }
 
   return (
