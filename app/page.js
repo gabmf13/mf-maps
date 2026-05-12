@@ -1,4 +1,4 @@
-"use client";
+"us"use client";
 
 import { useEffect, useState } from "react";
 
@@ -113,7 +113,7 @@ export default function Home() {
                     </p>
 
                     <p className="text-slate-400 text-sm">
-                      📍 ${station.latitude}, ${station.longitude}
+                      INSEE : {station.insee}
                     </p>
                     </div>
                   </div>
@@ -233,3 +233,4 @@ export default function Home() {
 // 4. Importer sur Vercel
 // 5. Remplacer csvUrl par ton Google Sheets export CSV
 // 6. Déployer
+
