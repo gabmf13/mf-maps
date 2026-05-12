@@ -1,0 +1,16 @@
+{
+  "name": "MF Maps",
+  "short_name": "MF Maps",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#edf1f5",
+  "theme_color": "#0057d9",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

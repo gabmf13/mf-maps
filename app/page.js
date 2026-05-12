@@ -1,11 +1,71 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import "leaflet/dist/leaflet.css";
+
+       
+
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+
+const Popup = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Popup),
+  { ssr: false }
+);
+
+const leafletIcon =
+  typeof window !== "undefined"
+    ? new (require("leaflet").Icon)({
+        iconUrl:
+          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+        shadowUrl:
+          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+      })
+    : null;
 
 export default function Home() {
   const [stations, setStations] = useState([]);
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
+  const [tab, setTab] = useState("list");
+  const radarStations = [
+  {
+    name: "Radar Collobrières",
+    url: "https://docs.google.com/forms"
+  },
+  {
+    name: "Radar Bollène",
+    url: "https://docs.google.com/forms"
+  },
+  {
+    name: "Radar Colombis",
+    url: "https://docs.google.com/forms"
+  },
+  {
+    name: "Radar Maurel",
+    url: "https://docs.google.com/forms"
+  },
+  {
+    name: "Radar Vars",
+    url: "https://docs.google.com/forms"
+  }
+];
+  
 
   const csvUrl =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRzIr6m4Itx77Zc2yBD4drjlHKCqF44afUdNRCmWU3QW7LyfY-o1rQulVH2_-dmjcOUjehN9hPZCbk9/pub?gid=398812539&single=true&output=csv";
@@ -63,7 +123,7 @@ export default function Home() {
       <div className="max-w-md mx-auto min-h-screen bg-[#edf1f5] relative overflow-hidden">
 
         {/* HEADER */}
-        <div className="bg-gradient-to-br from-[#003aa8] to-[#0057d9] px-5 pt-12 pb-8 rounded-b-[32px] shadow-xl">
+        <div className="bg-gradient-to-br relative z-20 from-[#003aa8] to-[#0057d9] px-5 pt-12 pb-8 rounded-b-[32px] shadow-xl">
 
           <div className="flex items-center justify-between gap-3">
 
@@ -114,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* SEARCH */}
-        <div className="px-4 -mt-5 relative z-20">
+        <div className="px-4 -mt-5 relative z-30">
 
           <div className="bg-white rounded-[24px] shadow-lg px-4 py-3 flex items-center gap-3">
 
@@ -133,74 +193,226 @@ export default function Home() {
 
         </div>
 
-        {/* LIST */}
-        <div className="px-4 pt-4 pb-32 space-y-3">
+        {/* CONTENT */}
+<div className="px-4 pt-4 pb-32">
 
-          {filtered.map((station, index) => (
+  {tab === "list" && (
 
-            <div
-              key={index}
-              className="bg-white rounded-[24px] px-4 py-3 shadow-[0_4px_18px_rgba(0,0,0,0.07)]"
-            >
+    <div className="space-y-3">
 
-              <div className="flex items-center gap-3">
+      {filtered.map((station, index) => (
 
-                {/* IMAGE */}
-                <div className="w-20 h-20 min-w-[80px] rounded-[22px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md overflow-hidden">
+        <div
+          key={index}
+          className="bg-white rounded-[24px] px-4 py-3 shadow-[0_4px_18px_rgba(0,0,0,0.07)]"
+        >
 
-                  <img
-                    src="/station.png"
-                    alt=""
-                    className="w-14 h-14 object-contain"
-                  />
+          <div className="flex items-center gap-3">
 
-                </div>
+            <div className="w-20 h-20 min-w-[80px] rounded-[22px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md overflow-hidden">
 
-                {/* INFOS */}
-                <div className="flex-1 min-w-0">
-
-                  <h2 className="font-bold text-[14px] leading-tight text-[#111827] break-words">
-                    {station.station}
-                  </h2>
-
-                  <p className="text-slate-400 mt-2 text-[13px]">
-                    INSEE : {station.insee}
-                  </p>
-
-                </div>
-
-                {/* BUTTONS */}
-                <div className="flex items-center gap-2">
-
-                  <button
-                    onClick={() =>
-                      openWaze(
-                        station.latitude,
-                        station.longitude
-                      )
-                    }
-                    className="w-12 h-12 rounded-[16px] bg-[#1677ff] text-white text-lg shadow-md flex items-center justify-center"
-                  >
-                    🧭
-                  </button>
-
-                  <button
-                    onClick={() => setSelected(station)}
-                    className="w-12 h-12 rounded-[16px] bg-[#f3f5f8] text-slate-700 text-lg flex items-center justify-center"
-                  >
-                    ℹ️
-                  </button>
-
-                </div>
-
-              </div>
+              <img
+                src="/station.png"
+                alt=""
+                className="w-14 h-14 object-contain"
+              />
 
             </div>
 
-          ))}
+            <div className="flex-1 min-w-0">
+
+              <h2 className="font-bold text-[14px] leading-tight text-[#111827] break-words">
+                {station.station}
+              </h2>
+
+              <p className="text-slate-400 mt-2 text-[13px]">
+                INSEE : {station.insee}
+              </p>
+
+            </div>
+
+            <div className="flex items-center gap-2">
+
+              <button
+                onClick={() =>
+                  openWaze(
+                    station.latitude,
+                    station.longitude
+                  )
+                }
+                className="w-12 h-12 rounded-[16px] bg-[#1677ff] text-white text-lg shadow-md flex items-center justify-center"
+              >
+                🧭
+              </button>
+
+              <button
+                onClick={() => setSelected(station)}
+                className="w-12 h-12 rounded-[16px] bg-[#f3f5f8] text-slate-700 text-lg flex items-center justify-center"
+              >
+                ℹ️
+              </button>
+
+            </div>
+
+          </div>
 
         </div>
 
+      ))}
+
+    </div>
+
+  )}
+
+  {tab === "map" && !selected && (
+
+    <div className="absolute left-0 right-0 top-[110px] bottom-[72px] z-0 overflow-hidden">
+
+      <MapContainer
+        center={[46.5, 2.5]}
+        zoom={6}
+        zoomControl={false}
+        style={{
+  height: "100%",
+  width: "100%",
+}}
+      >
+
+        <TileLayer
+          attribution='&copy; OpenStreetMap contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        {filtered.map((station, index) => {
+
+          const lat = parseFloat(station.latitude);
+          const lng = parseFloat(station.longitude);
+
+          if (isNaN(lat) || isNaN(lng)) return null;
+
+          return (
+            <Marker
+  key={index}
+  position={[lat, lng]}
+  icon={leafletIcon}
+>
+
+              <Popup
+  closeButton={false}
+  className="custom-popup"
+>
+
+  <div className="w-[140px]">
+
+    <div className="flex justify-between items-start">
+
+      <div className="pt-2">
+
+        <h2 className="text-[15px] font-bold text-[#1a1a1a] leading-none">
+          {station.station}
+        </h2>
+
+        <p className="text-[12px] text-slate-500 mt-3">
+          INSEE : {station.insee}
+        </p>
+
+      </div>
+
+    </div>
+
+    <div className="h-[1px] bg-slate-200 my-5"></div>
+
+    <div className="flex gap-2">
+
+      {/* WAZE */}
+      <button
+        onClick={() =>
+          openWaze(lat, lng)
+        }
+        className="flex-1 h-[38px] rounded-[22px] bg-[#1d6fff] shadow-md flex items-center justify-center text-white text-[18px]"
+      >
+        🚘
+      </button>
+
+      {/* INFO */}
+      <button
+        onClick={() => setSelected(station)}
+        className="flex-1 h-[38px] rounded-[22px] bg-[#1d6fff] shadow-md flex items-center justify-center text-white text-[18px]"
+      >
+        ℹ️
+      </button>
+
+    </div>
+
+  </div>
+
+</Popup>
+
+            </Marker>
+          );
+        })}
+
+      </MapContainer>
+
+    </div>
+
+  )}
+  {tab === "radar" && (
+
+  <div className="px-4 pt-4 pb-32 space-y-3">
+
+    {radarStations.map((radar, index) => (
+
+      <div
+        key={index}
+        className="bg-white rounded-[24px] px-4 py-4 shadow-[0_4px_18px_rgba(0,0,0,0.07)]"
+      >
+
+        <div className="flex items-center justify-between gap-3">
+
+          <div className="flex items-center gap-3 min-w-0">
+
+            <div className="w-16 h-16 rounded-[18px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md text-white text-3xl">
+              📡
+            </div>
+
+            <div>
+
+              <h2 className="font-bold text-[16px] text-[#111827]">
+                {radar.name}
+              </h2>
+
+              <p className="text-slate-400 text-sm mt-1">
+                Formulaire de préventive
+              </p>
+
+            </div>
+
+          </div>
+
+          <button
+            onClick={() =>
+              window.open(
+                radar.url,
+                "_blank"
+              )
+            }
+            className="w-12 h-12 rounded-[16px] bg-[#1677ff] text-white text-xl shadow-md flex items-center justify-center"
+          >
+            📝
+          </button>
+
+        </div>
+
+      </div>
+
+    ))}
+
+  </div>
+
+)}
+
+</div>
         {/* DETAIL */}
         {selected && (
 
@@ -362,22 +574,40 @@ export default function Home() {
         )}
 
         {/* NAVBAR */}
-        <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-slate-200 flex justify-around py-3 z-40">
+        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl max-w-md mx-auto bg-white border-t border-slate-200 flex justify-around py-3 z-40">
 
-          <button className="flex flex-col items-center text-blue-600 font-semibold">
+          <button
+  onClick={() => setTab("list")}
+  className={`flex flex-col items-center ${
+    tab === "list"
+      ? "text-blue-600 font-semibold"
+      : "text-slate-400"}`}>
             <span className="text-xl">📋</span>
             Liste
           </button>
 
-          <button className="flex flex-col items-center text-slate-400">
-            <span className="text-xl">🗺️</span>
+<button
+  onClick={() => setTab("map")}
+  className={`flex flex-col items-center ${
+    tab === "map"
+      ? "text-blue-600 font-semibold"
+      : "text-slate-400"
+  }`}
+>            <span className="text-xl">🗺️</span>
             Carte
           </button>
 
-          <button className="flex flex-col items-center text-slate-400">
-            <span className="text-xl">⭐</span>
-            Favoris
-          </button>
+          <button
+  onClick={() => setTab("radar")}
+  className={`flex flex-col items-center ${
+    tab === "radar"
+      ? "text-blue-600 font-semibold"
+      : "text-slate-400"
+  }`}
+>
+  <span className="text-xl">📝</span>
+   Forms Radar
+</button>
 
         </div>
 

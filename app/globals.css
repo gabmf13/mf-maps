@@ -9,3 +9,21 @@ body {
   font-family: sans-serif;
   background: #eef2f7;
 }
+.leaflet-popup-content-wrapper {
+  border-radius: 28px !important;
+  padding: 14px !important;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.18) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.leaflet-popup-tip {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.leaflet-popup-close-button {
+  display: none !important;
+}

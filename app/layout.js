@@ -2,6 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "MF maps",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }) {
