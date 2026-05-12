@@ -63,22 +63,22 @@ export default function Home() {
       <div className="max-w-md mx-auto min-h-screen bg-[#edf1f5] relative overflow-hidden">
 
         {/* HEADER */}
-        <div className="bg-gradient-to-br from-[#002c7d] to-[#0057d9] px-5 pt-14 pb-10 rounded-b-[38px] shadow-2xl">
+        <div className="bg-gradient-to-br from-[#002c7d] to-[#0057d9] px-6 pt-14 pb-10 rounded-b-[40px] shadow-2xl">
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
 
             <img
               src="/MF_maps_logo.png"
               alt="MF maps"
-              className="w-16 h-16 rounded-2xl bg-white p-2 shadow-lg"
+              className="w-20 h-20 rounded-[26px] bg-white p-2 shadow-lg"
             />
 
             <div>
-              <h1 className="text-white text-3xl font-bold">
+              <h1 className="text-white text-4xl font-bold">
                 MF maps
               </h1>
 
-              <p className="text-blue-100">
+              <p className="text-blue-100 text-xl mt-1">
                 Stations météo
               </p>
             </div>
@@ -87,32 +87,32 @@ export default function Home() {
         </div>
 
         {/* SEARCH */}
-        <div className="px-4 -mt-6 relative z-20">
+        <div className="px-4 -mt-7 relative z-20">
 
-          <div className="bg-white rounded-[30px] shadow-xl px-5 py-4 flex items-center gap-3">
+          <div className="bg-white rounded-[32px] shadow-[0_10px_30px_rgba(0,0,0,0.12)] px-5 py-5 flex items-center gap-4">
 
-            <span className="text-2xl text-slate-400">
-              🔍
+            <span className="text-3xl text-slate-400">
+              🔎
             </span>
 
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Rechercher une station..."
-              className="flex-1 outline-none text-lg bg-transparent"
+              className="flex-1 outline-none text-[22px] bg-transparent text-slate-700"
             />
 
           </div>
         </div>
 
         {/* LIST */}
-        <div className="px-4 pt-5 pb-32 space-y-5">
+        <div className="px-4 pt-5 pb-36 space-y-4">
 
           {filtered.map((station, index) => (
 
             <div
               key={index}
-              className="bg-white rounded-[32px] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] overflow-hidden"
+              className="bg-white rounded-[30px] px-4 py-4 shadow-[0_6px_24px_rgba(0,0,0,0.08)]"
             >
 
               <div className="flex items-center justify-between gap-3">
@@ -120,23 +120,23 @@ export default function Home() {
                 {/* LEFT */}
                 <div className="flex items-center gap-4 flex-1 min-w-0">
 
-                  <div className="w-24 h-24 min-w-[96px] rounded-[28px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg overflow-hidden">
+                  <div className="w-20 h-20 min-w-[80px] rounded-[24px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center overflow-hidden shadow-lg">
 
                     <img
                       src="/station.png"
                       alt=""
-                      className="w-20 h-20 object-contain"
+                      className="w-14 h-14 object-contain"
                     />
 
                   </div>
 
                   <div className="flex-1 min-w-0">
 
-                    <h2 className="font-bold text-[18px] leading-tight truncate">
+                    <h2 className="font-bold text-[18px] leading-tight truncate text-[#111827]">
                       {station.station}
                     </h2>
 
-                    <p className="text-slate-400 mt-3 text-[17px]">
+                    <p className="text-slate-400 mt-2 text-[15px]">
                       INSEE : {station.insee}
                     </p>
 
@@ -145,7 +145,7 @@ export default function Home() {
                 </div>
 
                 {/* ACTIONS */}
-                <div className="flex items-center gap-3 ml-2">
+                <div className="flex items-center gap-3">
 
                   <button
                     onClick={() =>
@@ -154,14 +154,14 @@ export default function Home() {
                         station.longitude
                       )
                     }
-                    className="w-16 h-16 min-w-[64px] rounded-[24px] bg-[#1677ff] text-white text-2xl shadow-lg flex items-center justify-center"
+                    className="w-14 h-14 rounded-[20px] bg-[#1677ff] text-white text-xl shadow-lg flex items-center justify-center"
                   >
                     🧭
                   </button>
 
                   <button
                     onClick={() => setSelected(station)}
-                    className="w-16 h-16 min-w-[64px] rounded-[24px] bg-[#f2f4f8] text-slate-700 text-2xl flex items-center justify-center"
+                    className="w-14 h-14 rounded-[20px] bg-[#f3f5f8] text-slate-700 text-xl flex items-center justify-center"
                   >
                     ℹ️
                   </button>
@@ -181,31 +181,21 @@ export default function Home() {
 
           <div className="fixed inset-0 bg-[#edf1f5] z-50 overflow-y-auto">
 
-            {/* TOP */}
-            <div className="bg-gradient-to-br from-[#002c7d] to-[#0057d9] px-5 pt-14 pb-10 rounded-b-[38px] shadow-2xl">
+            {/* HEADER DETAIL */}
+            <div className="bg-gradient-to-br from-[#002c7d] to-[#0057d9] px-6 pt-14 pb-10 rounded-b-[40px] shadow-2xl">
 
               <div className="flex items-center justify-between">
 
                 <button
                   onClick={() => setSelected(null)}
-                  className="w-12 h-12 rounded-full bg-white/20 text-white text-2xl"
+                  className="w-12 h-12 rounded-full bg-white/20 text-white text-2xl flex items-center justify-center"
                 >
                   ←
                 </button>
 
-                <div className="flex items-center gap-3">
-
-                  <img
-                    src="/MF_maps_logo.png"
-                    alt=""
-                    className="w-12 h-12 rounded-2xl bg-white p-1"
-                  />
-
-                  <h1 className="text-white text-2xl font-bold">
-                    MF maps
-                  </h1>
-
-                </div>
+                <h1 className="text-white text-2xl font-bold">
+                  MF maps
+                </h1>
 
                 <div className="w-12"></div>
 
@@ -218,14 +208,14 @@ export default function Home() {
                   <img
                     src="/station.png"
                     alt=""
-                    className="w-16 h-16 object-contain"
+                    className="w-20 h-20 object-contain"
                   />
 
                 </div>
 
-                <div>
+                <div className="min-w-0">
 
-                  <h2 className="text-white text-4xl font-bold leading-tight">
+                  <h2 className="text-white text-3xl font-bold leading-tight">
                     {selected.station}
                   </h2>
 
@@ -239,8 +229,8 @@ export default function Home() {
 
             </div>
 
-            {/* BUTTONS */}
-            <div className="px-5 mt-6 flex gap-4">
+            {/* BUTTON */}
+            <div className="px-5 mt-6">
 
               <button
                 onClick={() =>
@@ -249,7 +239,7 @@ export default function Home() {
                     selected.longitude
                   )
                 }
-                className="flex-1 bg-[#1677ff] text-white rounded-[24px] py-5 text-lg font-semibold shadow-xl"
+                className="w-full bg-[#1677ff] text-white rounded-[24px] py-5 text-lg font-semibold shadow-xl"
               >
                 🧭 Ouvrir dans Waze
               </button>
@@ -259,14 +249,13 @@ export default function Home() {
             {/* INFOS */}
             <div className="px-5 py-6">
 
-              <div className="bg-white rounded-[32px] p-5 shadow-lg space-y-5">
+              <div className="bg-white rounded-[30px] p-5 shadow-lg space-y-5">
 
                 <h3 className="text-2xl font-bold">
                   Informations
                 </h3>
 
                 <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-
                   <p className="text-slate-400 mb-2">
                     Type
                   </p>
@@ -274,11 +263,9 @@ export default function Home() {
                   <p className="text-lg">
                     {selected.type || "Non renseigné"}
                   </p>
-
                 </div>
 
                 <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-
                   <p className="text-slate-400 mb-2">
                     Coordonnées
                   </p>
@@ -286,11 +273,9 @@ export default function Home() {
                   <p className="text-lg">
                     {selected.latitude}, {selected.longitude}
                   </p>
-
                 </div>
 
                 <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-
                   <p className="text-slate-400 mb-2">
                     Contacts
                   </p>
@@ -298,11 +283,9 @@ export default function Home() {
                   <p className="text-lg whitespace-pre-wrap">
                     {selected.contacts || "Aucun contact"}
                   </p>
-
                 </div>
 
                 <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-
                   <p className="text-slate-400 mb-2">
                     Identifiant SIM
                   </p>
@@ -310,11 +293,9 @@ export default function Home() {
                   <p className="text-lg">
                     {selected.sim || "Non renseigné"}
                   </p>
-
                 </div>
 
                 <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-
                   <p className="text-slate-400 mb-2">
                     Mot de passe SIM
                   </p>
@@ -322,11 +303,9 @@ export default function Home() {
                   <p className="text-lg">
                     {selected.password || "Non renseigné"}
                   </p>
-
                 </div>
 
                 <div>
-
                   <p className="text-slate-400 mb-3">
                     Notes
                   </p>
@@ -335,7 +314,6 @@ export default function Home() {
                     defaultValue={selected.notes}
                     className="w-full min-h-[180px] rounded-[24px] border border-slate-200 p-5 text-lg"
                   />
-
                 </div>
 
               </div>
