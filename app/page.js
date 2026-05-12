@@ -1,8 +1,4 @@
 
-
-// =========================
-// app/page.js
-// =========================
 "use client";
 
 import { useEffect, useState } from "react";
@@ -65,11 +61,22 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-100 p-4">
+    <main className="min-h-screen bg-gradient-to-b from-slate-100 to-slate-200 p-4">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-          <div className="bg-blue-900 text-white p-5">
-            <h1 className="text-3xl font-bold">MF maps</h1>
+          <div className="bg-gradient-to-r from-blue-950 via-blue-800 to-cyan-600 text-white p-5">
+            <div className="flex items-center gap-4">
+              <img
+                src="/MF_maps_logo.png"
+                alt="MF maps"
+                className="w-16 h-16 rounded-2xl shadow-lg bg-white p-1"
+              />
+
+              <div>
+                <h1 className="text-3xl font-bold tracking-tight">MF maps</h1>
+                <p className="opacity-80">Stations météo</p>
+              </div>
+            </div>
             <p className="opacity-80">Stations météo</p>
           </div>
 
@@ -82,11 +89,11 @@ export default function Home() {
             />
           </div>
 
-          <div className="space-y-4 p-4">
+          <div className="space-y-4 p-4 max-h-\[75vh\] overflow-y-auto">
             {filtered.map((station, index) => (
               <div
                 key={index}
-                className="rounded-3xl bg-slate-50 border p-4"
+                className="rounded-3xl bg-white/90 backdrop-blur border border-white shadow-xl p-5 hover:scale-[1.01] transition-all duration-200"
               >
                 <div className="flex justify-between gap-4">
                   <div>
@@ -111,14 +118,14 @@ export default function Home() {
                           station.longitude
                         )
                       }
-                      className="bg-blue-600 text-white px-4 py-2 rounded-2xl"
+                      className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-3 rounded-2xl shadow-lg font-semibold hover:opacity-90 transition"
                     >
                       Waze
                     </button>
 
                     <button
                       onClick={() => setSelected(station)}
-                      className="bg-slate-200 px-4 py-2 rounded-2xl"
+                      className="bg-slate-900 text-white px-5 py-3 rounded-2xl shadow font-semibold hover:bg-slate-800 transition"
                     >
                       Infos
                     </button>
@@ -132,7 +139,7 @@ export default function Home() {
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
           {selected ? (
             <div>
-              <div className="bg-blue-900 text-white p-5">
+              <div className="bg-gradient-to-r from-blue-950 via-blue-800 to-cyan-600 text-white p-5">
                 <h2 className="text-2xl font-bold">
                   {selected.station}
                 </h2>
@@ -176,6 +183,7 @@ export default function Home() {
                   </h3>
 
                   <textarea
+                    placeholder="Ajouter une note..."
                     defaultValue={selected.notes}
                     className="w-full min-h-[160px] rounded-2xl border p-4"
                   />
@@ -184,7 +192,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="h-full flex items-center justify-center p-10 text-slate-400 text-center">
-              Sélectionne une station
+              🛰️ Sélectionne une station météo pour afficher les informations détaillées
             </div>
           )}
         </div>
@@ -203,3 +211,5 @@ export default function Home() {
 // 4. Importer sur Vercel
 // 5. Remplacer csvUrl par ton Google Sheets export CSV
 // 6. Déployer
+
+
