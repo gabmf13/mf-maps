@@ -120,23 +120,23 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#edf1f5] text-slate-900">
-      <div className="max-w-md mx-auto min-h-screen bg-[#edf1f5] relative overflow-hidden">
+      <div className="max-w-md mx-auto h-screen bg-[#edf1f5] relative overflow-hidden">
 
         {/* HEADER */}
-        <div className="bg-gradient-to-br relative z-20 from-[#003aa8] to-[#0057d9] px-5 pt-12 pb-8 rounded-b-[32px] shadow-xl">
+        <div className="bg-gradient-to-br relative z-20 from-[#003aa8] to-[#0057d9] px-5 pt-5 pb-5 rounded-b-[32px] shadow-xl">
 
           <div className="flex items-center justify-between gap-3">
 
             {/* LEFT */}
-            <div className="flex items-center gap-4 min-w-0">
+            <div className="flex items-center gap-5">
 
               <img
                 src="/MF_maps_logo.png"
                 alt="MF maps"
-                className="w-16 h-16 rounded-[20px] bg-white p-2 shadow-lg"
+                className="w-20 h-20 rounded-[24px] bg-white p-3 shadow-lg"
               />
 
-              <div>
+              <div className="flex flex-col justify-center">
                 <h1 className="text-white text-3xl font-bold">
                   MF Maps
                 </h1>
@@ -148,33 +148,13 @@ export default function Home() {
 
             </div>
 
-            {/* EXTRANET */}
-            <button
-              onClick={() =>
-                window.open(
-                  "https://www.meteo.fr/extranets/",
-                  "_blank"
-                )
-              }
-              className="flex items-center gap-2 border border-white/40 rounded-[18px] px-4 py-3 text-white bg-white/10 backdrop-blur"
-            >
-
-              <span className="text-sm font-semibold">
-                Extranet
-              </span>
-
-              <span className="text-2xl">
-                🌐
-              </span>
-
-            </button>
 
           </div>
 
         </div>
 
         {/* SEARCH */}
-        <div className="px-4 -mt-5 relative z-30">
+        <div className="px-4 -mt-2 relative z-30">
 
           <div className="bg-white rounded-[24px] shadow-lg px-4 py-3 flex items-center gap-3">
 
@@ -194,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* CONTENT */}
-<div className="px-4 pt-4 pb-32">
+<div className="px-4 pt-[10px] pb-32 overflow-y-auto scrollbar-hide h-[calc(100vh-210px)]">
 
   {tab === "list" && (
 
@@ -266,7 +246,7 @@ export default function Home() {
 
   {tab === "map" && !selected && (
 
-    <div className="absolute left-0 right-0 top-[110px] bottom-[72px] z-0 overflow-hidden">
+    <div className="absolute left-0 right-0 top-[95px] bottom-[72px] z-0 overflow-hidden">
 
       <MapContainer
         center={[46.5, 2.5]}
@@ -331,7 +311,7 @@ export default function Home() {
         }
         className="flex-1 h-[38px] rounded-[22px] bg-[#1d6fff] shadow-md flex items-center justify-center text-white text-[18px]"
       >
-        🚘
+        🧭
       </button>
 
       {/* INFO */}
@@ -365,20 +345,20 @@ export default function Home() {
 
       <div
         key={index}
-        className="bg-white rounded-[24px] px-4 py-4 shadow-[0_4px_18px_rgba(0,0,0,0.07)]"
+        className="bg-white rounded-[24px] px-4 py-3 shadow-[0_4px_18px_rgba(0,0,0,0.07)]"
       >
 
         <div className="flex items-center justify-between gap-3">
 
           <div className="flex items-center gap-3 min-w-0">
 
-            <div className="w-16 h-16 rounded-[18px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md text-white text-3xl">
+            <div className="w-20 h-20 min-w-[80px] rounded-[18px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md text-white text-3xl">
               📡
             </div>
 
             <div>
 
-              <h2 className="font-bold text-[16px] text-[#111827]">
+              <h2 className="font-bold text-[14px] text-[#111827]">
                 {radar.name}
               </h2>
 
@@ -397,7 +377,7 @@ export default function Home() {
                 "_blank"
               )
             }
-            className="w-12 h-12 rounded-[16px] bg-[#1677ff] text-white text-xl shadow-md flex items-center justify-center"
+            className="w-12 h-12 rounded-[16px] bg-[#1677ff] text-white text-lg shadow-md flex items-center justify-center"
           >
             📝
           </button>
