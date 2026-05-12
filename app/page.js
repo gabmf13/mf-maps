@@ -24,15 +24,15 @@ export default function Home() {
             const cols = row.split(",");
 
             return {
-              station: cols[0] || "",
-              type: cols[1] || "",
-              latitude: cols[2] || "",
-              longitude: cols[3] || "",
-              contacts: cols[4] || "",
-              sim: cols[5] || "",
-              password: cols[6] || "",
-              notes: cols[7] || "",
-              insee: cols[8] || "",
+              station: cols[0]?.trim() || "",
+              insee: cols[1]?.trim() || "",
+              type: cols[2]?.trim() || "",
+              latitude: cols[3]?.trim() || "",
+              longitude: cols[4]?.trim() || "",
+              contacts: cols[5]?.trim() || "",
+              sim: cols[6]?.trim() || "",
+              password: cols[7]?.trim() || "",
+              notes: cols[8]?.trim() || "",
             };
           });
 
@@ -50,6 +50,8 @@ export default function Home() {
   );
 
   function openWaze(lat, lng) {
+    if (!lat || !lng) return;
+
     window.open(
       `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`,
       "_blank"
@@ -110,31 +112,31 @@ export default function Home() {
 
             <div
               key={index}
-              className="bg-white rounded-[32px] p-4 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+              className="bg-white rounded-[32px] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] overflow-hidden"
             >
 
               <div className="flex items-center justify-between gap-3">
 
                 {/* LEFT */}
-                <div className="flex items-center gap-4 flex-1">
+                <div className="flex items-center gap-4 flex-1 min-w-0">
 
-                  <div className="w-20 h-20 rounded-[26px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg">
+                  <div className="w-24 h-24 min-w-[96px] rounded-[28px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg overflow-hidden">
 
                     <img
                       src="/station.png"
                       alt=""
-                      className="w-12 h-12 object-contain"
+                      className="w-20 h-20 object-contain"
                     />
 
                   </div>
 
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
 
-                    <h2 className="font-bold text-[18px] leading-tight">
+                    <h2 className="font-bold text-[18px] leading-tight truncate">
                       {station.station}
                     </h2>
 
-                    <p className="text-slate-400 mt-2 text-[16px]">
+                    <p className="text-slate-400 mt-3 text-[17px]">
                       INSEE : {station.insee}
                     </p>
 
@@ -143,7 +145,7 @@ export default function Home() {
                 </div>
 
                 {/* ACTIONS */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 ml-2">
 
                   <button
                     onClick={() =>
@@ -152,14 +154,14 @@ export default function Home() {
                         station.longitude
                       )
                     }
-                    className="w-14 h-14 rounded-2xl bg-[#1677ff] text-white text-xl shadow-lg flex items-center justify-center"
+                    className="w-16 h-16 min-w-[64px] rounded-[24px] bg-[#1677ff] text-white text-2xl shadow-lg flex items-center justify-center"
                   >
                     🧭
                   </button>
 
                   <button
                     onClick={() => setSelected(station)}
-                    className="w-14 h-14 rounded-2xl bg-[#f2f4f8] text-slate-700 text-xl flex items-center justify-center"
+                    className="w-16 h-16 min-w-[64px] rounded-[24px] bg-[#f2f4f8] text-slate-700 text-2xl flex items-center justify-center"
                   >
                     ℹ️
                   </button>
@@ -252,12 +254,6 @@ export default function Home() {
                 🧭 Ouvrir dans Waze
               </button>
 
-              <button
-                className="flex-1 bg-white rounded-[24px] py-5 text-lg font-medium shadow-lg"
-              >
-                📍 Voir sur la carte
-              </button>
-
             </div>
 
             {/* INFOS */}
@@ -268,6 +264,30 @@ export default function Home() {
                 <h3 className="text-2xl font-bold">
                   Informations
                 </h3>
+
+                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
+
+                  <p className="text-slate-400 mb-2">
+                    Type
+                  </p>
+
+                  <p className="text-lg">
+                    {selected.type || "Non renseigné"}
+                  </p>
+
+                </div>
+
+                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
+
+                  <p className="text-slate-400 mb-2">
+                    Coordonnées
+                  </p>
+
+                  <p className="text-lg">
+                    {selected.latitude}, {selected.longitude}
+                  </p>
+
+                </div>
 
                 <div className="bg-[#f7f8fb] rounded-[24px] p-5">
 
