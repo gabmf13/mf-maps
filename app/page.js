@@ -12,7 +12,7 @@ export default function Home() {
   // Remplacer l'URL ci-dessous par ton export CSV Google Sheets.
 
   const csvUrl =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRzIr6m4Itx77Zc2yBD4drjlHKCqF44afUdNRCmWU3QW7LyfY-o1rQulVH2_-dmjcOUjehN9hPZCbk9/pub?gid=398812539&single=true&output=csv";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-EXAMPLE/pub?output=csv";
 
   useEffect(() => {
     async function loadStations() {
@@ -53,7 +53,7 @@ export default function Home() {
     s.station.toLowerCase().includes(search.toLowerCase())
   );
 
-  function openWaze(lat, lng) {
+  function open🧭(lat, lng) {
     window.open(
       `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`,
       "_blank"
@@ -61,10 +61,10 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-100 to-slate-200 p-4">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-6">
+    <main className="min-h-screen bg-[#f4f5f7] p-4">
+      <div className="max-w-md mx-auto min-h-screen bg-white shadow-2xl relative overflow-hidden">
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-950 via-blue-800 to-cyan-600 text-white p-5">
+          <div className="bg-gradient-to-r from-[#022859] to-[#003b82] text-white p-5">
             <div className="flex items-center gap-4">
               <img
                 src="/MF_maps_logo.png"
@@ -93,7 +93,7 @@ export default function Home() {
             {filtered.map((station, index) => (
               <div
                 key={index}
-                className="rounded-3xl bg-white/90 backdrop-blur border border-white shadow-xl p-5 hover:scale-[1.01] transition-all duration-200"
+                className="rounded-[28px] bg-white border border-slate-100 shadow-lg p-4 transition-all duration-200"
               >
                 <div className="flex justify-between gap-4">
                   <div>
@@ -113,21 +113,21 @@ export default function Home() {
                   <div className="flex gap-2">
                     <button
                       onClick={() =>
-                        openWaze(
+                        open🧭(
                           station.latitude,
                           station.longitude
                         )
                       }
                       className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-3 rounded-2xl shadow-lg font-semibold hover:opacity-90 transition"
                     >
-                      Waze
+                      🧭
                     </button>
 
                     <button
                       onClick={() => setSelected(station)}
                       className="bg-slate-900 text-white px-5 py-3 rounded-2xl shadow font-semibold hover:bg-slate-800 transition"
                     >
-                      Infos
+                      ℹ️
                     </button>
                   </div>
                 </div>
@@ -139,7 +139,7 @@ export default function Home() {
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
           {selected ? (
             <div>
-              <div className="bg-gradient-to-r from-blue-950 via-blue-800 to-cyan-600 text-white p-5">
+              <div className="bg-gradient-to-r from-[#022859] to-[#003b82] text-white p-5">
                 <h2 className="text-2xl font-bold">
                   {selected.station}
                 </h2>
@@ -200,16 +200,4 @@ export default function Home() {
     </main>
   );
 }
-
-// =========================
-// Instructions
-// =========================
-
-// 1. Créer un projet Next.js
-// 2. Coller ce fichier
-// 3. Push sur GitHub
-// 4. Importer sur Vercel
-// 5. Remplacer csvUrl par ton Google Sheets export CSV
-// 6. Déployer
-
 
