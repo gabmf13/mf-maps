@@ -63,35 +63,36 @@ export default function Home() {
       <div className="max-w-md mx-auto min-h-screen bg-[#edf1f5] relative overflow-hidden">
 
         {/* HEADER */}
-        <div className="bg-gradient-to-br from-[#002c7d] to-[#0057d9] px-6 pt-14 pb-10 rounded-b-[40px] shadow-2xl">
+        <div className="bg-gradient-to-br from-[#003aa8] to-[#0057d9] px-5 pt-12 pb-8 rounded-b-[32px] shadow-xl">
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4">
 
             <img
               src="/MF_maps_logo.png"
               alt="MF maps"
-              className="w-20 h-20 rounded-[26px] bg-white p-2 shadow-lg"
+              className="w-16 h-16 rounded-[20px] bg-white p-2 shadow-lg"
             />
 
             <div>
-              <h1 className="text-white text-4xl font-bold">
+              <h1 className="text-white text-3xl font-bold">
                 MF maps
               </h1>
 
-              <p className="text-blue-100 text-xl mt-1">
+              <p className="text-blue-100 text-base mt-1">
                 Stations météo
               </p>
             </div>
 
           </div>
+
         </div>
 
         {/* SEARCH */}
-        <div className="px-4 -mt-7 relative z-20">
+        <div className="px-4 -mt-5 relative z-20">
 
-          <div className="bg-white rounded-[32px] shadow-[0_10px_30px_rgba(0,0,0,0.12)] px-5 py-5 flex items-center gap-4">
+          <div className="bg-white rounded-[24px] shadow-lg px-4 py-3 flex items-center gap-3">
 
-            <span className="text-3xl text-slate-400">
+            <span className="text-xl text-slate-400">
               🔎
             </span>
 
@@ -99,53 +100,51 @@ export default function Home() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Rechercher une station..."
-              className="flex-1 outline-none text-[22px] bg-transparent text-slate-700"
+              className="flex-1 outline-none text-[17px] bg-transparent text-slate-700"
             />
 
           </div>
+
         </div>
 
         {/* LIST */}
-        <div className="px-4 pt-5 pb-36 space-y-4">
+        <div className="px-4 pt-4 pb-32 space-y-3">
 
           {filtered.map((station, index) => (
 
             <div
               key={index}
-              className="bg-white rounded-[30px] px-4 py-4 shadow-[0_6px_24px_rgba(0,0,0,0.08)]"
+              className="bg-white rounded-[24px] px-4 py-3 shadow-[0_4px_18px_rgba(0,0,0,0.07)]"
             >
 
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
 
-                {/* LEFT */}
-                <div className="flex items-center gap-4 flex-1 min-w-0">
+                {/* IMAGE */}
+                <div className="w-16 h-16 min-w-[64px] rounded-[18px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md overflow-hidden">
 
-                  <div className="w-20 h-20 min-w-[80px] rounded-[24px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center overflow-hidden shadow-lg">
-
-                    <img
-                      src="/station.png"
-                      alt=""
-                      className="w-14 h-14 object-contain"
-                    />
-
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-
-                    <h2 className="font-bold text-[18px] leading-tight truncate text-[#111827]">
-                      {station.station}
-                    </h2>
-
-                    <p className="text-slate-400 mt-2 text-[15px]">
-                      INSEE : {station.insee}
-                    </p>
-
-                  </div>
+                  <img
+                    src="/station.png"
+                    alt=""
+                    className="w-10 h-10 object-contain"
+                  />
 
                 </div>
 
-                {/* ACTIONS */}
-                <div className="flex items-center gap-3">
+                {/* INFOS */}
+                <div className="flex-1 min-w-0">
+
+                  <h2 className="font-bold text-[16px] truncate text-[#111827]">
+                    {station.station}
+                  </h2>
+
+                  <p className="text-slate-400 mt-1 text-[14px]">
+                    INSEE : {station.insee}
+                  </p>
+
+                </div>
+
+                {/* BUTTONS */}
+                <div className="flex items-center gap-2">
 
                   <button
                     onClick={() =>
@@ -154,14 +153,14 @@ export default function Home() {
                         station.longitude
                       )
                     }
-                    className="w-14 h-14 rounded-[20px] bg-[#1677ff] text-white text-xl shadow-lg flex items-center justify-center"
+                    className="w-12 h-12 rounded-[16px] bg-[#1677ff] text-white text-lg shadow-md flex items-center justify-center"
                   >
                     🧭
                   </button>
 
                   <button
                     onClick={() => setSelected(station)}
-                    className="w-14 h-14 rounded-[20px] bg-[#f3f5f8] text-slate-700 text-xl flex items-center justify-center"
+                    className="w-12 h-12 rounded-[16px] bg-[#f3f5f8] text-slate-700 text-lg flex items-center justify-center"
                   >
                     ℹ️
                   </button>
@@ -176,19 +175,19 @@ export default function Home() {
 
         </div>
 
-        {/* DETAIL PAGE */}
+        {/* DETAIL */}
         {selected && (
 
           <div className="fixed inset-0 bg-[#edf1f5] z-50 overflow-y-auto">
 
-            {/* HEADER DETAIL */}
-            <div className="bg-gradient-to-br from-[#002c7d] to-[#0057d9] px-6 pt-14 pb-10 rounded-b-[40px] shadow-2xl">
+            {/* TOP */}
+            <div className="bg-gradient-to-br from-[#003aa8] to-[#0057d9] px-5 pt-14 pb-8 rounded-b-[32px] shadow-xl">
 
               <div className="flex items-center justify-between">
 
                 <button
                   onClick={() => setSelected(null)}
-                  className="w-12 h-12 rounded-full bg-white/20 text-white text-2xl flex items-center justify-center"
+                  className="w-10 h-10 rounded-full bg-white/20 text-white text-xl flex items-center justify-center"
                 >
                   ←
                 </button>
@@ -197,29 +196,29 @@ export default function Home() {
                   MF maps
                 </h1>
 
-                <div className="w-12"></div>
+                <div className="w-10"></div>
 
               </div>
 
-              <div className="mt-8 flex items-center gap-5">
+              <div className="mt-6 flex items-center gap-4">
 
-                <div className="w-28 h-28 rounded-[30px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-2xl">
+                <div className="w-20 h-20 rounded-[24px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg">
 
                   <img
                     src="/station.png"
                     alt=""
-                    className="w-20 h-20 object-contain"
+                    className="w-12 h-12 object-contain"
                   />
 
                 </div>
 
                 <div className="min-w-0">
 
-                  <h2 className="text-white text-3xl font-bold leading-tight">
+                  <h2 className="text-white text-2xl font-bold leading-tight">
                     {selected.station}
                   </h2>
 
-                  <p className="text-blue-100 mt-3 text-xl">
+                  <p className="text-blue-100 mt-2 text-lg">
                     INSEE : {selected.insee}
                   </p>
 
@@ -230,7 +229,7 @@ export default function Home() {
             </div>
 
             {/* BUTTON */}
-            <div className="px-5 mt-6">
+            <div className="px-4 mt-5">
 
               <button
                 onClick={() =>
@@ -239,7 +238,7 @@ export default function Home() {
                     selected.longitude
                   )
                 }
-                className="w-full bg-[#1677ff] text-white rounded-[24px] py-5 text-lg font-semibold shadow-xl"
+                className="w-full bg-[#1677ff] text-white rounded-[20px] py-4 text-base font-semibold shadow-lg"
               >
                 🧭 Ouvrir dans Waze
               </button>
@@ -247,73 +246,85 @@ export default function Home() {
             </div>
 
             {/* INFOS */}
-            <div className="px-5 py-6">
+            <div className="px-4 py-5">
 
-              <div className="bg-white rounded-[30px] p-5 shadow-lg space-y-5">
+              <div className="bg-white rounded-[24px] p-4 shadow-lg space-y-4">
 
-                <h3 className="text-2xl font-bold">
+                <h3 className="text-xl font-bold">
                   Informations
                 </h3>
 
-                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-                  <p className="text-slate-400 mb-2">
+                <div className="bg-[#f7f8fb] rounded-[18px] p-4">
+
+                  <p className="text-slate-400 mb-1 text-sm">
                     Type
                   </p>
 
-                  <p className="text-lg">
+                  <p>
                     {selected.type || "Non renseigné"}
                   </p>
+
                 </div>
 
-                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-                  <p className="text-slate-400 mb-2">
+                <div className="bg-[#f7f8fb] rounded-[18px] p-4">
+
+                  <p className="text-slate-400 mb-1 text-sm">
                     Coordonnées
                   </p>
 
-                  <p className="text-lg">
+                  <p>
                     {selected.latitude}, {selected.longitude}
                   </p>
+
                 </div>
 
-                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-                  <p className="text-slate-400 mb-2">
+                <div className="bg-[#f7f8fb] rounded-[18px] p-4">
+
+                  <p className="text-slate-400 mb-1 text-sm">
                     Contacts
                   </p>
 
-                  <p className="text-lg whitespace-pre-wrap">
+                  <p className="whitespace-pre-wrap">
                     {selected.contacts || "Aucun contact"}
                   </p>
+
                 </div>
 
-                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-                  <p className="text-slate-400 mb-2">
+                <div className="bg-[#f7f8fb] rounded-[18px] p-4">
+
+                  <p className="text-slate-400 mb-1 text-sm">
                     Identifiant SIM
                   </p>
 
-                  <p className="text-lg">
+                  <p>
                     {selected.sim || "Non renseigné"}
                   </p>
+
                 </div>
 
-                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
-                  <p className="text-slate-400 mb-2">
+                <div className="bg-[#f7f8fb] rounded-[18px] p-4">
+
+                  <p className="text-slate-400 mb-1 text-sm">
                     Mot de passe SIM
                   </p>
 
-                  <p className="text-lg">
+                  <p>
                     {selected.password || "Non renseigné"}
                   </p>
+
                 </div>
 
                 <div>
-                  <p className="text-slate-400 mb-3">
+
+                  <p className="text-slate-400 mb-2 text-sm">
                     Notes
                   </p>
 
                   <textarea
                     defaultValue={selected.notes}
-                    className="w-full min-h-[180px] rounded-[24px] border border-slate-200 p-5 text-lg"
+                    className="w-full min-h-[140px] rounded-[18px] border border-slate-200 p-4"
                   />
+
                 </div>
 
               </div>
@@ -324,21 +335,21 @@ export default function Home() {
 
         )}
 
-        {/* BOTTOM BAR */}
-        <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-slate-200 flex justify-around py-4 z-40">
+        {/* NAVBAR */}
+        <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-slate-200 flex justify-around py-3 z-40">
 
           <button className="flex flex-col items-center text-blue-600 font-semibold">
-            <span className="text-2xl">📋</span>
+            <span className="text-xl">📋</span>
             Liste
           </button>
 
           <button className="flex flex-col items-center text-slate-400">
-            <span className="text-2xl">🗺️</span>
+            <span className="text-xl">🗺️</span>
             Carte
           </button>
 
           <button className="flex flex-col items-center text-slate-400">
-            <span className="text-2xl">⭐</span>
+            <span className="text-xl">⭐</span>
             Favoris
           </button>
 
