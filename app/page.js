@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -12,7 +11,7 @@ export default function Home() {
   // Remplacer l'URL ci-dessous par ton export CSV Google Sheets.
 
   const csvUrl =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-EXAMPLE/pub?output=csv";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRzIr6m4Itx77Zc2yBD4drjlHKCqF44afUdNRCmWU3QW7LyfY-o1rQulVH2_-dmjcOUjehN9hPZCbk9/pub?gid=398812539&single=true&output=csv";
 
   useEffect(() => {
     async function loadStations() {
@@ -53,7 +52,7 @@ export default function Home() {
     s.station.toLowerCase().includes(search.toLowerCase())
   );
 
-  function open🧭(lat, lng) {
+  function openWaze(lat, lng) {
     window.open(
       `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`,
       "_blank"
@@ -61,10 +60,10 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f4f5f7] p-4">
-      <div className="max-w-md mx-auto min-h-screen bg-white shadow-2xl relative overflow-hidden">
+    <main className="min-h-screen bg-[#eef2f7] text-slate-900">
+      <div className="max-w-md mx-auto min-h-screen bg-[#f7f8fa] relative overflow-hidden">
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-          <div className="bg-gradient-to-r from-[#022859] to-[#003b82] text-white p-5">
+          <div className="bg-gradient-to-br from-[#001f4d] via-[#003b82] to-[#0d5bd7] text-white px-5 pt-14 pb-8 rounded-b-[34px] shadow-2xl">
             <div className="flex items-center gap-4">
               <img
                 src="/MF_maps_logo.png"
@@ -80,24 +79,32 @@ export default function Home() {
             <p className="opacity-80">Stations météo</p>
           </div>
 
-          <div className="p-4">
-            <input
+          <div className="px-4 -mt-5 relative z-20">
+            <div className="bg-white rounded-[28px] shadow-xl border border-slate-100 px-4 py-3 flex items-center gap-3">
+              <span className="text-slate-400 text-xl">🔍</span>
+              <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Rechercher une station"
-              className="w-full rounded-2xl border p-4"
+              placeholder="Rechercher une station météo..."
+              className="w-full bg-transparent outline-none text-[17px]"
             />
+            </div>
           </div>
 
-          <div className="space-y-4 p-4 max-h-\[75vh\] overflow-y-auto">
+          <div className="px-4 pt-4 pb-32 space-y-4 overflow-y-auto">
             {filtered.map((station, index) => (
               <div
                 key={index}
-                className="rounded-[28px] bg-white border border-slate-100 shadow-lg p-4 transition-all duration-200"
+                className="rounded-[30px] bg-white border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.06)] p-4 active:scale-[0.98] transition-all duration-200"
               >
                 <div className="flex justify-between gap-4">
                   <div>
-                    <h2 className="font-bold text-xl">
+                    <div className="flex items-start gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white text-2xl shadow-lg">
+                      🛰️
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="font-bold text-[20px] tracking-tight">
                       {station.station}
                     </h2>
 
@@ -106,26 +113,27 @@ export default function Home() {
                     </p>
 
                     <p className="text-slate-400 text-sm">
-                      INSEE : {station.insee}
+                      📍 ${station.latitude}, ${station.longitude}
                     </p>
+                    </div>
                   </div>
 
                   <div className="flex gap-2">
                     <button
                       onClick={() =>
-                        open🧭(
+                        openWaze(
                           station.latitude,
                           station.longitude
                         )
                       }
-                      className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-3 rounded-2xl shadow-lg font-semibold hover:opacity-90 transition"
+                      className="bg-[#1677ff] text-white w-14 h-14 rounded-2xl shadow-lg font-semibold text-xl flex items-center justify-center"
                     >
                       🧭
                     </button>
 
                     <button
                       onClick={() => setSelected(station)}
-                      className="bg-slate-900 text-white px-5 py-3 rounded-2xl shadow font-semibold hover:bg-slate-800 transition"
+                      className="bg-slate-100 text-slate-700 w-14 h-14 rounded-2xl font-semibold text-xl flex items-center justify-center"
                     >
                       ℹ️
                     </button>
@@ -139,7 +147,7 @@ export default function Home() {
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
           {selected ? (
             <div>
-              <div className="bg-gradient-to-r from-[#022859] to-[#003b82] text-white p-5">
+              <div className="bg-gradient-to-br from-[#001f4d] via-[#003b82] to-[#0d5bd7] text-white px-5 pt-14 pb-8 rounded-b-[34px] shadow-2xl">
                 <h2 className="text-2xl font-bold">
                   {selected.station}
                 </h2>
@@ -197,7 +205,31 @@ export default function Home() {
           )}
         </div>
       </div>
-    </main>
+    <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur border-t border-slate-200 flex justify-around py-4 z-50 shadow-2xl">
+  <button className="flex flex-col items-center gap-1 text-blue-600 font-semibold text-sm">
+    <span className="text-2xl">📋</span>
+    Liste
+  </button>
+  <button className="flex flex-col items-center gap-1 text-slate-400 text-sm">
+    <span className="text-2xl">🗺️</span>
+    Carte
+  </button>
+  <button className="flex flex-col items-center gap-1 text-slate-400 text-sm">
+    <span className="text-2xl">⭐</span>
+    Favoris
+  </button>
+</div>
+</main>
   );
 }
 
+// =========================
+// Instructions
+// =========================
+
+// 1. Créer un projet Next.js
+// 2. Coller ce fichier
+// 3. Push sur GitHub
+// 4. Importer sur Vercel
+// 5. Remplacer csvUrl par ton Google Sheets export CSV
+// 6. Déployer
