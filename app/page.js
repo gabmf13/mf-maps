@@ -110,13 +110,20 @@ export default function Home() {
   );
 
   function openWaze(lat, lng) {
-    if (!lat || !lng) return;
+  if (!lat || !lng) return;
 
-    window.open(
-      `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`,
-      "_blank"
-    );
-  }
+  const appUrl =
+    `waze://?ll=${lat},${lng}&navigate=yes`;
+
+  const webUrl =
+    `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+
+  window.location.href = appUrl;
+
+  setTimeout(() => {
+    window.location.href = webUrl;
+  }, 1500);
+}
 
   return (
     <main className="min-h-screen bg-[#edf1f5] text-slate-900">
