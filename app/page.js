@@ -1,25 +1,4 @@
-// MF maps — V1
-// Structure simplifiée prête pour Vercel
-// Next.js + React + Tailwind
 
-// =========================
-// package.json
-// =========================
-{
-  "name": "mf-maps",
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
-  }
-}
 
 // =========================
 // app/page.js
