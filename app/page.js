@@ -140,7 +140,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            ))}
+            ))
           </div>
         </div>
 
@@ -233,4 +233,3 @@ export default function Home() {
 // 4. Importer sur Vercel
 // 5. Remplacer csvUrl par ton Google Sheets export CSV
 // 6. Déployer
-
