@@ -57,89 +57,93 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#eef2f7] text-slate-900">
-      <div className="max-w-md mx-auto min-h-screen bg-[#f7f8fa] relative overflow-hidden">
+    <main className="min-h-screen bg-[#edf1f5] text-slate-900">
+      <div className="max-w-md mx-auto min-h-screen bg-[#edf1f5] relative overflow-hidden">
 
         {/* HEADER */}
-        <div className="bg-gradient-to-br from-[#001f4d] via-[#003b82] to-[#0d5bd7] text-white px-5 pt-14 pb-8 rounded-b-[34px] shadow-2xl">
+        <div className="bg-gradient-to-br from-[#002c7d] to-[#0057d9] px-5 pt-14 pb-10 rounded-b-[38px] shadow-2xl">
+
           <div className="flex items-center gap-4">
+
             <img
               src="/MF_maps_logo.png"
               alt="MF maps"
-              className="w-16 h-16 rounded-2xl shadow-lg bg-white p-1"
+              className="w-16 h-16 rounded-2xl bg-white p-2 shadow-lg"
             />
 
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">
+              <h1 className="text-white text-3xl font-bold">
                 MF maps
               </h1>
 
-              <p className="opacity-80">
+              <p className="text-blue-100">
                 Stations météo
               </p>
             </div>
+
           </div>
         </div>
 
         {/* SEARCH */}
-        <div className="px-4 -mt-5 relative z-20">
-          <div className="bg-white rounded-[28px] shadow-xl border border-slate-100 px-4 py-3 flex items-center gap-3">
+        <div className="px-4 -mt-6 relative z-20">
 
-            <span className="text-slate-400 text-xl">
+          <div className="bg-white rounded-[30px] shadow-xl px-5 py-4 flex items-center gap-3">
+
+            <span className="text-2xl text-slate-400">
               🔍
             </span>
 
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Rechercher une station météo..."
-              className="w-full bg-transparent outline-none text-[17px]"
+              placeholder="Rechercher une station..."
+              className="flex-1 outline-none text-lg bg-transparent"
             />
+
           </div>
         </div>
 
-        {/* LISTE */}
-        <div className="px-4 pt-4 pb-32 space-y-4 overflow-y-auto">
+        {/* LIST */}
+        <div className="px-4 pt-5 pb-32 space-y-5">
 
           {filtered.map((station, index) => (
 
             <div
               key={index}
-              className="rounded-[30px] bg-white border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.06)] p-4 active:scale-[0.98] transition-all duration-200"
+              className="bg-white rounded-[32px] p-4 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
             >
 
-              <div className="flex justify-between gap-4">
+              <div className="flex items-center justify-between gap-3">
 
-                {/* INFOS */}
-                <div className="flex items-start gap-4 flex-1">
+                {/* LEFT */}
+                <div className="flex items-center gap-4 flex-1">
 
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white text-2xl shadow-lg">
-                    🛰️
+                  <div className="w-20 h-20 rounded-[26px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg">
+
+                    <img
+                      src="/station.png"
+                      alt=""
+                      className="w-12 h-12 object-contain"
+                    />
+
                   </div>
 
                   <div className="flex-1">
 
-                    <h2 className="font-bold text-[20px] tracking-tight">
+                    <h2 className="font-bold text-[18px] leading-tight">
                       {station.station}
                     </h2>
 
-                    <p className="text-slate-500 text-sm">
-                      {station.type}
-                    </p>
-
-                    <p className="text-slate-400 text-sm">
-                      📍 {station.latitude}, {station.longitude}
-                    </p>
-
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-slate-400 mt-2 text-[16px]">
                       INSEE : {station.insee}
                     </p>
 
                   </div>
+
                 </div>
 
                 {/* ACTIONS */}
-                <div className="flex gap-2">
+                <div className="flex items-center gap-3">
 
                   <button
                     onClick={() =>
@@ -148,40 +152,93 @@ export default function Home() {
                         station.longitude
                       )
                     }
-                    className="bg-[#1677ff] text-white w-14 h-14 rounded-2xl shadow-lg font-semibold text-xl flex items-center justify-center"
+                    className="w-14 h-14 rounded-2xl bg-[#1677ff] text-white text-xl shadow-lg flex items-center justify-center"
                   >
                     🧭
                   </button>
 
                   <button
                     onClick={() => setSelected(station)}
-                    className="bg-slate-100 text-slate-700 w-14 h-14 rounded-2xl font-semibold text-xl flex items-center justify-center"
+                    className="w-14 h-14 rounded-2xl bg-[#f2f4f8] text-slate-700 text-xl flex items-center justify-center"
                   >
                     ℹ️
                   </button>
 
                 </div>
+
               </div>
+
             </div>
 
           ))}
+
         </div>
 
-        {/* DETAILS */}
+        {/* DETAIL PAGE */}
         {selected && (
-          <div className="fixed inset-0 bg-black/40 z-50 flex items-end">
 
-            <div className="bg-white w-full rounded-t-[36px] p-6 max-h-[85vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-[#edf1f5] z-50 overflow-y-auto">
 
-              <div className="w-16 h-1 bg-slate-300 rounded-full mx-auto mb-6"></div>
+            {/* TOP */}
+            <div className="bg-gradient-to-br from-[#002c7d] to-[#0057d9] px-5 pt-14 pb-10 rounded-b-[38px] shadow-2xl">
 
-              <h2 className="text-2xl font-bold mb-2">
-                {selected.station}
-              </h2>
+              <div className="flex items-center justify-between">
 
-              <p className="text-slate-500 mb-6">
-                {selected.type}
-              </p>
+                <button
+                  onClick={() => setSelected(null)}
+                  className="w-12 h-12 rounded-full bg-white/20 text-white text-2xl"
+                >
+                  ←
+                </button>
+
+                <div className="flex items-center gap-3">
+
+                  <img
+                    src="/MF_maps_logo.png"
+                    alt=""
+                    className="w-12 h-12 rounded-2xl bg-white p-1"
+                  />
+
+                  <h1 className="text-white text-2xl font-bold">
+                    MF maps
+                  </h1>
+
+                </div>
+
+                <div className="w-12"></div>
+
+              </div>
+
+              <div className="mt-8 flex items-center gap-5">
+
+                <div className="w-28 h-28 rounded-[30px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-2xl">
+
+                  <img
+                    src="/station.png"
+                    alt=""
+                    className="w-16 h-16 object-contain"
+                  />
+
+                </div>
+
+                <div>
+
+                  <h2 className="text-white text-4xl font-bold leading-tight">
+                    {selected.station}
+                  </h2>
+
+                  <p className="text-blue-100 mt-3 text-xl">
+                    INSEE : {selected.insee}
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* BUTTONS */}
+            <div className="px-5 mt-6 flex gap-4">
 
               <button
                 onClick={() =>
@@ -190,82 +247,99 @@ export default function Home() {
                     selected.longitude
                   )
                 }
-                className="w-full bg-[#1677ff] text-white rounded-2xl py-4 font-semibold text-lg mb-6"
+                className="flex-1 bg-[#1677ff] text-white rounded-[24px] py-5 text-lg font-semibold shadow-xl"
               >
                 🧭 Ouvrir dans Waze
               </button>
 
-              <div className="space-y-4">
+              <button
+                className="flex-1 bg-white rounded-[24px] py-5 text-lg font-medium shadow-lg"
+              >
+                📍 Voir sur la carte
+              </button>
 
-                <div className="bg-slate-100 rounded-2xl p-4">
-                  <p className="text-sm text-slate-500 mb-1">
+            </div>
+
+            {/* INFOS */}
+            <div className="px-5 py-6">
+
+              <div className="bg-white rounded-[32px] p-5 shadow-lg space-y-5">
+
+                <h3 className="text-2xl font-bold">
+                  Informations
+                </h3>
+
+                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
+
+                  <p className="text-slate-400 mb-2">
                     Contacts
                   </p>
 
-                  <p className="font-medium whitespace-pre-wrap">
+                  <p className="text-lg whitespace-pre-wrap">
                     {selected.contacts || "Aucun contact"}
                   </p>
+
                 </div>
 
-                <div className="bg-slate-100 rounded-2xl p-4">
-                  <p className="text-sm text-slate-500 mb-1">
+                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
+
+                  <p className="text-slate-400 mb-2">
                     Identifiant SIM
                   </p>
 
-                  <p className="font-medium">
+                  <p className="text-lg">
                     {selected.sim || "Non renseigné"}
                   </p>
+
                 </div>
 
-                <div className="bg-slate-100 rounded-2xl p-4">
-                  <p className="text-sm text-slate-500 mb-1">
+                <div className="bg-[#f7f8fb] rounded-[24px] p-5">
+
+                  <p className="text-slate-400 mb-2">
                     Mot de passe SIM
                   </p>
 
-                  <p className="font-medium">
+                  <p className="text-lg">
                     {selected.password || "Non renseigné"}
                   </p>
+
                 </div>
 
                 <div>
-                  <p className="text-sm text-slate-500 mb-2">
+
+                  <p className="text-slate-400 mb-3">
                     Notes
                   </p>
 
                   <textarea
                     defaultValue={selected.notes}
-                    placeholder="Ajouter une note..."
-                    className="w-full min-h-[140px] rounded-2xl border border-slate-200 p-4"
+                    className="w-full min-h-[180px] rounded-[24px] border border-slate-200 p-5 text-lg"
                   />
+
                 </div>
 
               </div>
 
-              <button
-                onClick={() => setSelected(null)}
-                className="w-full mt-6 bg-slate-200 rounded-2xl py-4 font-semibold"
-              >
-                Fermer
-              </button>
-
             </div>
+
           </div>
+
         )}
 
         {/* BOTTOM BAR */}
-        <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur border-t border-slate-200 flex justify-around py-4 z-40 shadow-2xl">
+        <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-slate-200 flex justify-around py-4 z-40">
 
-          <button className="flex flex-col items-center gap-1 text-blue-600 font-semibold text-sm">
+          <button className="flex flex-col items-center text-blue-600 font-semibold">
             <span className="text-2xl">📋</span>
             Liste
           </button>
 
-          <button className="flex flex-col items-center gap-1 text-slate-400 text-sm">
+          <button className="flex flex-col items-center text-slate-400">
             <span className="text-2xl">🗺️</span>
             Carte
           </button>
 
-          <button className="flex flex-col items-center gap-1 text-slate-400 text-sm">
+          <button className="flex flex-col items-center text-slate-400">
             <span className="text-2xl">⭐</span>
             Favoris
           </button>
