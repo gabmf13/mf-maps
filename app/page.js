@@ -65,23 +65,49 @@ export default function Home() {
         {/* HEADER */}
         <div className="bg-gradient-to-br from-[#003aa8] to-[#0057d9] px-5 pt-12 pb-8 rounded-b-[32px] shadow-xl">
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between gap-3">
 
-            <img
-              src="/MF_maps_logo.png"
-              alt="MF maps"
-              className="w-16 h-16 rounded-[20px] bg-white p-2 shadow-lg"
-            />
+            {/* LEFT */}
+            <div className="flex items-center gap-4 min-w-0">
 
-            <div>
-              <h1 className="text-white text-3xl font-bold">
-                MF maps
-              </h1>
+              <img
+                src="/MF_maps_logo.png"
+                alt="MF maps"
+                className="w-16 h-16 rounded-[20px] bg-white p-2 shadow-lg"
+              />
 
-              <p className="text-blue-100 text-base mt-1">
-                Stations météo
-              </p>
+              <div>
+                <h1 className="text-white text-3xl font-bold">
+                  MF Maps
+                </h1>
+
+                <p className="text-blue-100 text-base mt-1">
+                  Stations météo
+                </p>
+              </div>
+
             </div>
+
+            {/* EXTRANET */}
+            <button
+              onClick={() =>
+                window.open(
+                  "https://www.meteo.fr/extranets/",
+                  "_blank"
+                )
+              }
+              className="flex items-center gap-2 border border-white/40 rounded-[18px] px-4 py-3 text-white bg-white/10 backdrop-blur"
+            >
+
+              <span className="text-sm font-semibold">
+                Extranet
+              </span>
+
+              <span className="text-2xl">
+                🌐
+              </span>
+
+            </button>
 
           </div>
 
@@ -100,7 +126,7 @@ export default function Home() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Rechercher une station..."
-              className="flex-1 outline-none text-[17px] bg-transparent text-slate-700"
+              className="flex-1 outline-none text-[16px] bg-transparent text-slate-700"
             />
 
           </div>
@@ -120,12 +146,12 @@ export default function Home() {
               <div className="flex items-center gap-3">
 
                 {/* IMAGE */}
-                <div className="w-16 h-16 min-w-[64px] rounded-[18px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md overflow-hidden">
+                <div className="w-20 h-20 min-w-[80px] rounded-[22px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md overflow-hidden">
 
                   <img
                     src="/station.png"
                     alt=""
-                    className="w-10 h-10 object-contain"
+                    className="w-14 h-14 object-contain"
                   />
 
                 </div>
@@ -133,11 +159,11 @@ export default function Home() {
                 {/* INFOS */}
                 <div className="flex-1 min-w-0">
 
-                  <h2 className="font-bold text-[16px] truncate text-[#111827]">
+                  <h2 className="font-bold text-[14px] leading-tight text-[#111827] break-words">
                     {station.station}
                   </h2>
 
-                  <p className="text-slate-400 mt-1 text-[14px]">
+                  <p className="text-slate-400 mt-2 text-[13px]">
                     INSEE : {station.insee}
                   </p>
 
@@ -193,7 +219,7 @@ export default function Home() {
                 </button>
 
                 <h1 className="text-white text-2xl font-bold">
-                  MF maps
+                  MF Maps
                 </h1>
 
                 <div className="w-10"></div>
@@ -207,14 +233,14 @@ export default function Home() {
                   <img
                     src="/station.png"
                     alt=""
-                    className="w-12 h-12 object-contain"
+                    className="w-14 h-14 object-contain"
                   />
 
                 </div>
 
                 <div className="min-w-0">
 
-                  <h2 className="text-white text-2xl font-bold leading-tight">
+                  <h2 className="text-white text-2xl font-bold leading-tight break-words">
                     {selected.station}
                   </h2>
 
@@ -228,7 +254,7 @@ export default function Home() {
 
             </div>
 
-            {/* BUTTON */}
+            {/* WAZE */}
             <div className="px-4 mt-5">
 
               <button
