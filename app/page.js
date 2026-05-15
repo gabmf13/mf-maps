@@ -295,7 +295,7 @@ useEffect(() => {
     >
 
       <span className="text-sm font-semibold">
-        Contact
+        Contact DSO
       </span>
 
       <span className="text-xl">
@@ -510,7 +510,7 @@ useEffect(() => {
   className="custom-popup"
 >
 
-  <div className="w-[140px]">
+  <div className="w-[180px] min-h-[80px] flex flex-col justify-between">
 
     <div className="flex justify-between items-start">
 
@@ -631,9 +631,18 @@ useEffect(() => {
 
       <div className="flex items-center gap-4">
 
-        <div className="w-16 h-16 rounded-[18px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white text-3xl">
-          📡
-        </div>
+       <div className="min-w-[90px]">
+
+            <div className="w-20 h-20 rounded-[20px] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center overflow-hidden">
+
+              <img
+                src="/station.png"
+                alt=""
+                className="w-14 h-14 object-contain"
+              />
+
+            </div>
+             </div>
 
         <div className="text-left">
 
