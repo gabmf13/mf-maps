@@ -75,23 +75,23 @@ export default function Home() {
   const radarStations = [
   {
     name: "Radar Collobrières",
-    url: "https://docs.google.com/forms"
+    url: "https://forms.gle/jYYhQ7LdufWdtgAL7"
   },
   {
     name: "Radar Bollène",
-    url: "https://docs.google.com/forms"
+    url: "https://forms.gle/vyNExNefmqsUTgjm9"
   },
   {
     name: "Radar Colombis",
-    url: "https://docs.google.com/forms"
+    url: "https://forms.gle/SzaNf7nqtabRJFCJ8"
   },
   {
     name: "Radar Maurel",
-    url: "https://docs.google.com/forms"
+    url: "https://forms.gle/QF9NZ87tG56AEufS9"
   },
   {
     name: "Radar Vars",
-    url: "https://docs.google.com/forms"
+    url: "https://forms.gle/CuSPDXn58xaBgdUy6"
   }
 ];
   
