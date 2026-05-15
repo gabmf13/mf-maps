@@ -305,12 +305,12 @@ useEffect(() => {
 
         </div>
 
-        {/* SEARCH */}
-        <div className="px-4 -mt-2 relative z-30">
+{/* SEARCH */}
+<div className="px-4 -mt-2 relative z-30">
 
   <div className="bg-white rounded-[24px] shadow-lg px-4 py-3 flex items-center gap-3">
 
-    <span className="text-xl text-slate-400">
+    <span className="text-xl text-slate-400 flex-shrink-0">
       🔎
     </span>
 
@@ -318,12 +318,27 @@ useEffect(() => {
       value={search}
       onChange={(e) => setSearch(e.target.value)}
       placeholder="Rechercher une station..."
-      className="flex-1 outline-none text-[16px] bg-transparent text-slate-700"
+      enterKeyHint="search"
+      onKeyDown={(e) => {
+
+        if (e.key === "Enter") {
+
+          e.currentTarget.blur();
+
+        }
+
+      }}
+      className="flex-1 min-w-0 outline-none text-[16px] bg-transparent text-slate-700"
     />
 
     <button
-      onClick={() => setShowLegend(true)}
-      className="bg-[#1677ff] text-white px-3 py-2 rounded-[14px] text-sm font-semibold"
+      onClick={() => {
+
+        document.activeElement.blur();
+        setShowLegend(true);
+
+      }}
+      className="flex-shrink-0 bg-[#1677ff] text-white px-3 py-2 rounded-[14px] text-sm font-semibold whitespace-nowrap"
     >
       Légende
     </button>
