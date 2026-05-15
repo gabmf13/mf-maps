@@ -260,51 +260,53 @@ useEffect(() => {
     <main className="min-h-screen bg-[#edf1f5] text-slate-900">
       <div className="max-w-md mx-auto h-screen bg-[#edf1f5] relative overflow-hidden">
 
-        {/* HEADER */}
-        <div className="bg-gradient-to-br relative z-20 from-[#003aa8] to-[#0057d9] px-5 pt-5 pb-5 rounded-b-[32px] shadow-xl">
+{/* HEADER */}
+<div className="bg-gradient-to-br relative z-20 from-[#003aa8] to-[#0057d9] px-5 pt-5 pb-5 rounded-b-[32px] shadow-xl">
 
-          <div className="flex items-center justify-between">
+  <div className="flex items-center justify-between gap-3">
 
-            {/* LEFT */}
-            <div className="flex items-center gap-5">
+    {/* LOGO + TITRE */}
+    <div className="flex items-center gap-3 min-w-0">
 
-              <img
-                src="/MF_maps_logo.png"
-                alt="MF maps"
-                className="w-20 h-20 rounded-[24px] bg-white p-3 shadow-lg"
-              />
+      <img
+        src="/MF_maps_logo.png"
+        alt="MF maps"
+        className="w-16 h-16 rounded-[20px] bg-white p-2 shadow-lg flex-shrink-0"
+      />
 
-              <div className="flex flex-col justify-center">
-                <h1 className="text-white text-3xl font-bold">
-                  MF Maps
-                </h1>
+      <div className="min-w-0">
 
-                <p className="text-blue-100 text-base mt-1">
-                  Stations météo
-                </p>
-                
-              </div>
-<button
-  onClick={() => changeTab("contact")}
-  className="ml-6 bg-white/10 border border-white/20 rounded-[18px] px-3 py-2 text-white backdrop-blur flex items-center gap-2"
->
+        <h1 className="text-white text-2xl font-bold leading-none whitespace-nowrap">
+          MF Maps
+        </h1>
 
-  <span className="text-sm font-semibold">
-    Contact
-  </span>
+        <p className="text-blue-100 text-sm mt-1">
+          Stations météo
+        </p>
 
-  <span className="text-xl">
-    📞
-  </span>
+      </div>
 
-</button>
-            </div>
+    </div>
 
+    {/* BOUTON CONTACT */}
+    <button
+      onClick={() => changeTab("contact")}
+      className="bg-white/10 border border-white/20 rounded-[18px] px-3 py-2 text-white backdrop-blur flex items-center gap-2 flex-shrink-0"
+    >
 
-          </div>
+      <span className="text-sm font-semibold">
+        Contact
+      </span>
 
-        </div>
+      <span className="text-xl">
+        📞
+      </span>
 
+    </button>
+
+  </div>
+
+</div>
 {/* SEARCH */}
 <div className="px-4 -mt-2 relative z-30">
 
