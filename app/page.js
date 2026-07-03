@@ -346,7 +346,7 @@ function ContactPage({ title, data, changeTab }) {
         </div>
 
         {/* Titre non sticky */}
-        <h2 className="absolute left-[132px] top-[20%] -translate-y-1/2 text-[28px] font-bold text-white leading-none">
+        <h2 className="absolute left-[132px] top-[20%] -translate-y-1/2 text-[24px] font-bold text-white leading-none">
           {title}
         </h2>
       </div>
