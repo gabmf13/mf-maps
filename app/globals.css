@@ -35,3 +35,56 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.leaflet-control-attribution {
+  display: none !important;
+}
+.leaflet-container {
+  background: #0f172a !important;
+}
+.mf-header {
+  background: linear-gradient(
+    135deg,
+    #0b57d0 0%,
+    #0a4db8 100%
+  );
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.leaflet-container {
+  background: #0f172a !important;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  70% {
+    transform: translateY(-8px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
