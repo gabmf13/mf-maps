@@ -346,7 +346,7 @@ function ContactPage({ title, data, changeTab }) {
         </div>
 
         {/* Titre non sticky */}
-        <h2 className="absolute left-[132px] top-1/2 -translate-y-1/2 text-[30px] font-bold text-white leading-none">
+        <h2 className="absolute left-[132px] top-[20%] -translate-y-1/2 text-[28px] font-bold text-white leading-none">
           {title}
         </h2>
       </div>
@@ -566,9 +566,9 @@ shadow-[0_12px_40px_rgba(0,0,0,0.15)]
         <MapClickHandler onMapClick={() => setSelectedMapStation(null)} />
 
         <TileLayer
-          attribution='&copy; OpenStreetMap contributors'
-          url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png"
-        />
+  attribution='&copy; OpenStreetMap contributors &copy; CARTO'
+  url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+/>
 
         {filtered.map((station, index) => {
 
